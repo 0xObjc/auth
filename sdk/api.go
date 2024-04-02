@@ -454,6 +454,5 @@ func (c *MspKey) ping() {
 	_, err := c.sendData(p)
 	if err != nil {
 		log.Println(err)
-		os.Exit(1)
 	}
 }
