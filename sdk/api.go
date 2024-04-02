@@ -10,7 +10,6 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"log"
 	"net/http"
-	"os"
 	"strconv"
 	"strings"
 	"time"
@@ -65,7 +64,7 @@ func (c *MspKey) onMessage() {
 		_, msg, err := c.conn.ReadMessage()
 		if err != nil {
 			log.Println("Error in receive:", err)
-			os.Exit(1)
+			//os.Exit(1)
 			return
 		}
 		res := strings.ReplaceAll(string(msg), "\"", "")
@@ -85,7 +84,7 @@ func (c *MspKey) onMessage() {
 		p, _ := strconv.ParseInt(temp.Time, 10, 64)
 		if p <= time.Now().Unix() {
 			fmt.Println("校验失败,数据已过期")
-			os.Exit(1)
+			//os.Exit(1)
 			_ = c.AddBlack("玄月检测:检测到内存被修改")
 		}
 
@@ -105,7 +104,7 @@ func (c *MspKey) onMessage() {
 			if temp.Msg != "主动下线" {
 				fmt.Println(temp.Msg)
 			}
-			os.Exit(1)
+			//os.Exit(1)
 			_ = c.AddBlack("玄月检测:检测到内存被修改")
 		}
 
