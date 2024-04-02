@@ -1,4 +1,4 @@
-module gitee.com/mspkey/tool
+module github.com/0xObjc/auth
 
 go 1.21
 
